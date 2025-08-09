@@ -1,0 +1,47 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: rest-api-demo
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/restapi_db
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: health,info,metrics,prometheus
+    endpoint:
+      health:
+        show-details: always
+    info:
+      env:
+        enabled: true
+
+  mvc:
+    throw-exception-if-no-handler-found: true
+    web:
+      resources:
+        add-mappings: false
+
+  logging:
+    level:
+      root: INFO
+      org.springframework.web: INFO
+      org.springframework.security: INFO
+      org.hibernate: INFO
+      com.yourcompany: DEBUG
