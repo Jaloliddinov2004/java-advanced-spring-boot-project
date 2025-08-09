@@ -81,10 +81,6 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public ResponseEntity<UserDTO> update(Long id, UserUpdateDTO dto) {
-        validateUsername(dto.getUsername());
-
-        validateEmail(dto.getEmail());
-
         User user = findById(id);
 
         user = userMapper.toEntity(dto, user);
